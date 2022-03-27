@@ -1,19 +1,23 @@
-const express = require("express");
+
+const express = require('express');
 const router = express.Router();
+const CollegeController = require('../controller/collegeController')
+const InternController = require('../controller/internController')
 
-const collegeController= require("../controllers/collegeController");
-const internController= require("../controllers/internController");
-
-//Testing API
-router.get("/test", function(req,res)
-{
-    res.send({status: true, message:"Working...!!"})
+// test API
+router.get('/test', function(req, res){
+    res.status(200).send({status: true, message: "test api working fine"})
 })
 
-router.post("/college", collegeController.createcollege);
+// new college entry
+router.post('/functionup/colleges', CollegeController.createCollege)
 
-router.post("/intern", internController.createIntern);
+// get college details
+router.get('/functionup/collegeDetails', CollegeController.getCollegeDetails)
 
-router.get("/getinfo", collegeController.collegeDetails);
+// new intern entry
+router.post('/functionup/interns', InternController.createIntern )
+
+
 
 module.exports = router;
